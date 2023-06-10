@@ -1,4 +1,4 @@
-package com.example.ama_ai
+package com.example.amaai
 
 import io.flutter.embedding.android.FlutterActivity
 

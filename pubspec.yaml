@@ -1,4 +1,4 @@
-name: ama_ai
+name: amaai
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -39,6 +39,11 @@ dependencies:
   contained_tab_bar_view: ^0.8.0
   lottie: ^2.4.0
   smooth_page_indicator: ^1.1.0
+  google_sign_in: ^5.4.4
+  firebase_core: ^2.13.1
+  firebase_auth: ^4.6.2
+  http: ^1.0.0
+  shared_preferences: ^2.1.2
 
 dev_dependencies:
   flutter_test:

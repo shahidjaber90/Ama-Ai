@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "373820132993",
+    "project_id": "amaaiapp",
+    "storage_bucket": "amaaiapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373820132993:android:4f98ecb7453669b8328780",
+        "android_client_info": {
+          "package_name": "com.example.amaai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373820132993-rboid5qmhbvi92429sohckd4ds8o0moh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAx9teCyfuAaOrhXC-UmdgDkOsCRLe6gA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "373820132993-rboid5qmhbvi92429sohckd4ds8o0moh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "373820132993-ef2482tr56duddm3elvl3mf1vpl2o99v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.amaAi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

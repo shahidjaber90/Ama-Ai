@@ -1,59 +1,65 @@
 import 'dart:convert';
+import 'package:amaai/Screens/dashboard.dart';
+import 'package:amaai/Utils/list.dart';
 import 'package:http/http.dart' as http;
-
-import 'package:amaai/Controller/googleSignInController.dart';
-import 'package:amaai/Screens/logInView.dart';
+import 'package:amaai/Screens/registerEmail.dart';
 import 'package:amaai/Utils/text.dart';
 import 'package:amaai/Widgets/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class RegisterPageView extends StatefulWidget {
-  RegisterPageView({super.key});
+class LogInView extends StatefulWidget {
+  LogInView({super.key});
 
   @override
-  State<RegisterPageView> createState() => _RegisterPageViewState();
+  State<LogInView> createState() => _LogInViewState();
 }
 
-class _RegisterPageViewState extends State<RegisterPageView> {
+class _LogInViewState extends State<LogInView> {
+  String? accessToken;
+  Future<void> saveAccessToken(String accessToken) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('accessToken', accessToken);
+  }
+
+
   Future<void> sendAPIRequest() async {
     final url = Uri.parse(
-        'http://buddee-dev-load-balancer-2023149093.us-west-1.elb.amazonaws.com/public/api/mobile/v1/register');
+        'http://buddee-dev-load-balancer-2023149093.us-west-1.elb.amazonaws.com/public/api/mobile/v1/login');
 
     final headers = {
       'Content-Type': 'application/json',
     };
 
     final body = jsonEncode({
-      'name': userNameController.text,
       'email': emailController.text,
       'password': passwordController.text,
-      'password_confirmation': confirmPasswordController.text,
     });
 
     final response = await http.post(url, headers: headers, body: body);
+    var responseData = jsonDecode(response.body);
+
+    // Access the access token
+    var accessToken = responseData['data']['accessToken'];
+    // accessToken.
 
     if (response.statusCode == 200) {
-      // Request successful, handle the response hereNavigator.push(
-           Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => LogInView(),
-          )); 
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('getaccesToken', accessToken);
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Dashboard()));
 
+      print('Access Token >>>>>>>>: $accessToken');
       print('API response: ${response.body}');
+      print('This is save access token: $accessToken');
     } else {
-      // Request failed, handle the error
       print('Error: ${response.statusCode}');
     }
   }
 
-// Call the function to send the API request
-
-  TextEditingController userNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,26 +79,23 @@ class _RegisterPageViewState extends State<RegisterPageView> {
                   height: MediaQuery.of(context).size.height * 0.12,
                 ),
                 Text(
-                  TextConstant.title,
+                  TextConstant.hello,
                   style: GoogleFonts.lato(
                       fontSize: 30, fontWeight: FontWeight.w700),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                ),
+                Text(
+                  TextConstant.account,
+                  style: GoogleFonts.lato(
+                      fontSize: 18, fontWeight: FontWeight.w400),
                 ),
 
                 // Text Fields
 
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.04,
-                ),
-
-                TextFieldWidget(
-                    labelText: TextConstant.userName,
-                    iconText: const Icon(Icons.person),
-                    controllerField: userNameController,
-                    obscureVal: false,
-                    type: TextInputType.emailAddress),
-
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
                 ),
 
                 TextFieldWidget(
@@ -110,17 +113,6 @@ class _RegisterPageViewState extends State<RegisterPageView> {
                     labelText: TextConstant.password,
                     iconText: const Icon(Icons.lock),
                     controllerField: passwordController,
-                    obscureVal: true,
-                    type: TextInputType.emailAddress),
-
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-
-                TextFieldWidget(
-                    labelText: TextConstant.confirmPassword,
-                    iconText: const Icon(Icons.lock),
-                    controllerField: confirmPasswordController,
                     obscureVal: true,
                     type: TextInputType.emailAddress),
 
@@ -145,13 +137,11 @@ class _RegisterPageViewState extends State<RegisterPageView> {
                         width: 8,
                       ),
                       GestureDetector(
-                        onTap: () async {
-                          await sendAPIRequest();
+                        onTap: () {
+                          sendAPIRequest();
 
-                          userNameController.clear();
                           emailController.clear();
                           passwordController.clear();
-                          confirmPasswordController.clear();
                         },
                         child: Container(
                           height: 80,
@@ -237,7 +227,7 @@ class _RegisterPageViewState extends State<RegisterPageView> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        'Already have an account?',
+                        "Don't have an account?",
                         style: GoogleFonts.lato(
                             fontSize: 14, fontWeight: FontWeight.w400),
                       ),
@@ -246,10 +236,10 @@ class _RegisterPageViewState extends State<RegisterPageView> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LogInView()));
+                                    builder: (context) => RegisterPageView()));
                           },
                           child: Text(
-                            'LOG IN',
+                            'Register',
                             style: GoogleFonts.lato(
                                 fontSize: 14, fontWeight: FontWeight.w400),
                           ))

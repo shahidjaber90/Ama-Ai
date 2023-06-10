@@ -1,7 +1,17 @@
-import 'package:ama_ai/Screens/onboarding.dart';
+// import 'package:amaai/Screens/checkAuth.dart';
+import 'package:amaai/Screens/checkAuth.dart';
+import 'package:amaai/Screens/onboarding.dart';
+import 'package:amaai/Screens/registerEmail.dart';
+import 'package:amaai/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -12,8 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SafeArea(
-        child: Onboarding() ),
+      home: Onboarding(),
     );
   }
 }

@@ -1,7 +1,7 @@
-import 'package:ama_ai/Utils/colors.dart';
-import 'package:ama_ai/Utils/text.dart';
-import 'package:ama_ai/Widgets/getCodeTextField.dart';
-import 'package:ama_ai/Widgets/textField.dart';
+import 'package:amaai/Utils/colors.dart';
+import 'package:amaai/Utils/text.dart';
+import 'package:amaai/Widgets/getCodeTextField.dart';
+import 'package:amaai/Widgets/textField.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,13 +40,12 @@ class PhoneRegisterView extends StatelessWidget {
               height: 36,
             ),
 
-            TextFieldWidget(
-              labelText: TextConstant.phoneNumber,
-              iconText: const Icon(Icons.phone_iphone_rounded),
-              controllerField: phoneNumber,
-              obscureVal: false,
-              type: TextInputType.phone
-            ),
+            // TextFieldWidget(
+            //     TextConstant.phoneNumber,
+            //     const Icon(Icons.phone_iphone_rounded),
+            //     phoneNumber,
+            //     false,
+            //     TextInputType.phone),
 
             const SizedBox(
               height: 24,
@@ -107,34 +106,33 @@ class PhoneRegisterView extends StatelessWidget {
             // ),
 
             Container(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
-                            color: ColorConstant.tabBarUnselectedColor,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Text(
-                            'or continue with',
-                            style: TextStyle(
-                                color: ColorConstant.tabBarUnselectedColor),
-                          ),
-                        ),
-                        Expanded(
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
-                            color: ColorConstant.tabBarUnselectedColor,
-                          ),
-                        ),
-                      ],
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      height: 5,
+                      thickness: 1,
+                      color: ColorConstant.tabBarUnselectedColor,
                     ),
                   ),
-
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Text(
+                      'or continue with',
+                      style:
+                          TextStyle(color: ColorConstant.tabBarUnselectedColor),
+                    ),
+                  ),
+                  Expanded(
+                    child: Divider(
+                      height: 5,
+                      thickness: 1,
+                      color: ColorConstant.tabBarUnselectedColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
             const SizedBox(height: 12),
 

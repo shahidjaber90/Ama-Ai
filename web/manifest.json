@@ -1,6 +1,6 @@
 {
-    "name": "ama_ai",
-    "short_name": "ama_ai",
+    "name": "amaai",
+    "short_name": "amaai",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

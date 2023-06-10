@@ -1,4 +1,4 @@
-# ama_ai
+# amaai
 
 A new Flutter project.
 

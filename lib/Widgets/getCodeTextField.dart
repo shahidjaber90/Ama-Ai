@@ -1,4 +1,4 @@
-import 'package:ama_ai/Utils/colors.dart';
+import 'package:amaai/Utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

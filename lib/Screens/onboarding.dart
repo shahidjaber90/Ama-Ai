@@ -1,7 +1,7 @@
-import 'package:ama_ai/Screens/signup_view.dart';
-import 'package:ama_ai/Utils/text.dart';
-import 'package:ama_ai/Widgets/button.dart';
-import 'package:ama_ai/Widgets/container.dart';
+import 'package:amaai/Screens/registerEmail.dart';
+import 'package:amaai/Utils/text.dart';
+import 'package:amaai/Widgets/button.dart';
+import 'package:amaai/Widgets/container.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -25,19 +25,19 @@ class Onboarding extends StatelessWidget {
                 children: [
                   CONTAINER(
                     name: "assets/4.json",
-                    text: TextConstant().one,
+                    text: TextConstant.one,
                   ),
                   CONTAINER(
                     name: "assets/2.json",
-                    text: TextConstant().two,
+                    text: TextConstant.two,
                   ),
                   CONTAINER(
                     name: "assets/3.json",
-                    text: TextConstant().three,
+                    text: TextConstant.three,
                   ),
                   CONTAINER(
                     name: "assets/4.json",
-                    text: TextConstant().four,
+                    text: TextConstant.four,
                   ),
                 ],
               ),
@@ -66,15 +66,17 @@ class Onboarding extends StatelessWidget {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SignUpView()));
+                              builder: (context) => RegisterPageView()));
                     }),
                 // const SizedBox(
                 //   height: 12,
                 // ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => SignUpView()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterPageView()));
                   },
                   child: Text(
                     "LOGIN",
